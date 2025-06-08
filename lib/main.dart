@@ -1,7 +1,10 @@
+import 'package:elaro_version_nodir/core/services/dependency_injection_instance.dart';
 import 'package:elaro_version_nodir/features/main/presentation/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await serviceLocator();
   runApp(const MainApp());
 }
 

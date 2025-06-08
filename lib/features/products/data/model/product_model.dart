@@ -1,9 +1,21 @@
+import 'dart:convert';
+
 class ProductModel {
   Data data;
 
   ProductModel({required this.data});
 
   ProductModel copyWith({Data? data}) => ProductModel(data: data ?? this.data);
+
+  factory ProductModel.fromJson(String str) =>
+      ProductModel.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory ProductModel.fromMap(Map<String, dynamic> json) =>
+      ProductModel(data: Data.fromMap(json["data"]));
+
+  Map<String, dynamic> toMap() => {"data": data.toMap()};
 }
 
 class Data {
@@ -90,6 +102,56 @@ class Data {
     images: images ?? this.images,
     attributes: attributes ?? this.attributes,
   );
+
+  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Data.fromMap(Map<String, dynamic> json) => Data(
+    id: json["id"],
+    nameUz: json["name_uz"],
+    nameCrl: json["name_crl"],
+    nameRu: json["name_ru"],
+    color: json["color"],
+    price: json["price"],
+    qty: json["qty"],
+    discountedPrice: json["discounted_price"],
+    discount: json["discount"],
+    discountType: json["discount_type"],
+    discountStart: json["discount_start"],
+    discountEnd: json["discount_end"],
+    descriptionUz: json["description_uz"],
+    descriptionCrl: json["description_crl"],
+    descriptionRu: json["description_ru"],
+    categoryId: json["category_id"],
+    brandId: json["brand_id"],
+    images: List<Image>.from(json["images"].map((x) => Image.fromMap(x))),
+    attributes: List<Attribute>.from(
+      json["attributes"].map((x) => Attribute.fromMap(x)),
+    ),
+  );
+
+  Map<String, dynamic> toMap() => {
+    "id": id,
+    "name_uz": nameUz,
+    "name_crl": nameCrl,
+    "name_ru": nameRu,
+    "color": color,
+    "price": price,
+    "qty": qty,
+    "discounted_price": discountedPrice,
+    "discount": discount,
+    "discount_type": discountType,
+    "discount_start": discountStart,
+    "discount_end": discountEnd,
+    "description_uz": descriptionUz,
+    "description_crl": descriptionCrl,
+    "description_ru": descriptionRu,
+    "category_id": categoryId,
+    "brand_id": brandId,
+    "images": List<dynamic>.from(images.map((x) => x.toMap())),
+    "attributes": List<dynamic>.from(attributes.map((x) => x.toMap())),
+  };
 }
 
 class Attribute {
@@ -128,6 +190,30 @@ class Attribute {
     valueCrl: valueCrl ?? this.valueCrl,
     valueRu: valueRu ?? this.valueRu,
   );
+
+  factory Attribute.fromJson(String str) => Attribute.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Attribute.fromMap(Map<String, dynamic> json) => Attribute(
+    id: json["id"],
+    nameUz: json["name_uz"],
+    nameCrl: json["name_crl"],
+    nameRu: json["name_ru"],
+    valueUz: json["value_uz"],
+    valueCrl: json["value_crl"],
+    valueRu: json["value_ru"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "id": id,
+    "name_uz": nameUz,
+    "name_crl": nameCrl,
+    "name_ru": nameRu,
+    "value_uz": valueUz,
+    "value_crl": valueCrl,
+    "value_ru": valueRu,
+  };
 }
 
 class Image {
@@ -138,4 +224,13 @@ class Image {
 
   Image copyWith({int? id, String? image}) =>
       Image(id: id ?? this.id, image: image ?? this.image);
+
+  factory Image.fromJson(String str) => Image.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory Image.fromMap(Map<String, dynamic> json) =>
+      Image(id: json["id"], image: json["image"]);
+
+  Map<String, dynamic> toMap() => {"id": id, "image": image};
 }
