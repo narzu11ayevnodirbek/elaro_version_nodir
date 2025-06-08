@@ -1,4 +1,4 @@
-import 'package:elaro_version_nodir/features/products/presentation/screens/products_screen.dart';
+import 'package:elaro_version_nodir/features/main/presentation/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
           return IndexedStack(
             index: value,
             children: [
-              ProductsScreen(),
+              HomePage(),
               Container(color: Colors.blue),
               Container(color: Colors.green),
               Container(color: Colors.yellow),
