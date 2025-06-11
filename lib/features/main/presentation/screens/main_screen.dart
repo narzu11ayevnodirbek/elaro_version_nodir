@@ -1,3 +1,5 @@
+import 'package:elaro_version_nodir/features/cart/data/model/product_model.dart';
+import 'package:elaro_version_nodir/features/cart/presentation/screens/product_screen.dart';
 import 'package:elaro_version_nodir/features/main/presentation/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final ValueNotifier<int> currentIndex = ValueNotifier(0);
+  final ProductModel product = ProductModel(
+    id: 2,
+    nameUz: "nameUz",
+    imageUrl: "imageUrl",
+    price: 200,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,8 +28,8 @@ class _MainScreenState extends State<MainScreen> {
             index: value,
             children: [
               HomePage(),
-              Container(color: Colors.blue),
               Container(color: Colors.green),
+              ProductScreen(product: product),
               Container(color: Colors.yellow),
               Container(color: Colors.black),
             ],
